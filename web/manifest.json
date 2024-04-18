@@ -1,6 +1,6 @@
 {
-    "name": "order_tracker",
-    "short_name": "order_tracker",
+    "name": "Edyn Life",
+    "short_name": "Edyn Life",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
