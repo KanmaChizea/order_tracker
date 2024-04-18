@@ -1,16 +1,31 @@
-# order_tracker
+# Setup guide
 
-A new Flutter project.
+- Clone project
+```
+git clone https://github.com/KanmaChizea/order_tracker.git
+```
 
-## Getting Started
+- Create `.env` file and insert the following variables with their accurate values
+```
+GH_CLIENT_ID = 
+GH_CLIENT_SECRET = 
+GH_REDIRECT_URL = 
+ABLY_KEY = 
+```
 
-This project is a starting point for a Flutter application.
+- Get dependencies
+```
+flutter pub get
+```
 
-A few resources to get you started if this is your first Flutter project:
+And you're good to go!
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Usage guide
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Run the application
+
+- Create an account and sign in with any of the options. Once you're signed in, you'd be presented with a screen displaying an active order
+
+- On your Ably dashboard, attach to channel name `orderStatus`
+
+- Send messages to update the status of the order on your app. The message date should be sent in order as ORDER ACCEPTED, ORDER PICK UP IN PROGRESS, ORDER ON THE WAY TO CUSTOMER, ORDER ARRIVED, ORDER DELIVERED
