@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart' as fb;
+import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:github_sign_in/github_sign_in.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -27,16 +28,22 @@ class AuthService implements IAuthService {
 
   @override
   Future<User?> loginWithGithub() async {
-    final GitHubSignIn gitHubSignIn = GitHubSignIn(
-        clientId: dotenv.env['GH_CLIENT_ID'] as String,
-        clientSecret: dotenv.env['GH_CLIENT_SECRET'] as String,
-        redirectUrl: dotenv.env['GH_REDIRECT_URL'] as String);
-    final result = await gitHubSignIn.signIn(navigatorKey.currentContext!);
+    late fb.UserCredential firebaseCredential;
+    if (kIsWeb) {
+      fb.GithubAuthProvider githubProvider = fb.GithubAuthProvider();
+      firebaseCredential = await _firebaseAuth.signInWithPopup(githubProvider);
+    } else {
+      final GitHubSignIn gitHubSignIn = GitHubSignIn(
+          clientId: dotenv.env['GH_CLIENT_ID'] as String,
+          clientSecret: dotenv.env['GH_CLIENT_SECRET'] as String,
+          redirectUrl: dotenv.env['GH_REDIRECT_URL'] as String);
+      final result = await gitHubSignIn.signIn(navigatorKey.currentContext!);
 
-    final githubAuthCredential =
-        fb.GithubAuthProvider.credential(result.token ?? '');
-    final firebaseCredential = await fb.FirebaseAuth.instance
-        .signInWithCredential(githubAuthCredential);
+      final githubAuthCredential =
+          fb.GithubAuthProvider.credential(result.token ?? '');
+      firebaseCredential =
+          await _firebaseAuth.signInWithCredential(githubAuthCredential);
+    }
     if (firebaseCredential.user != null) {
       return User.fromFirebase(firebaseCredential.user!);
     }
@@ -46,18 +53,27 @@ class AuthService implements IAuthService {
 
   @override
   Future<User?> loginWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    late fb.UserCredential firebaseCredential;
+    if (kIsWeb) {
+      fb.GoogleAuthProvider googleProvider = fb.GoogleAuthProvider();
+      googleProvider
+          .addScope('https://www.googleapis.com/auth/contacts.readonly');
+      googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
+      firebaseCredential = await _firebaseAuth.signInWithPopup(googleProvider);
+    } else {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
 
-    final credential = fb.GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
+      final credential = fb.GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
 
-    final firebaseCredential =
-        await fb.FirebaseAuth.instance.signInWithCredential(credential);
+      firebaseCredential =
+          await fb.FirebaseAuth.instance.signInWithCredential(credential);
+    }
     if (firebaseCredential.user != null) {
       return User.fromFirebase(firebaseCredential.user!);
     }

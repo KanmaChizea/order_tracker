@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:order_tracker/core/dependency_injection/injection_container.dart';
 import 'package:order_tracker/model/auth_states.dart';
@@ -42,6 +44,7 @@ class UserCubit extends Cubit<AuthState> {
         emit(UserNotSignedIn());
       }
     } catch (e) {
+      log(e.toString());
       emit(UserSignInFailed(errorMessage: e.toString()));
     }
   }
