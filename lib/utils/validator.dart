@@ -1,5 +1,4 @@
 /// Contains multiple validation functions for TextFormFields
-
 abstract class Validator {
   /// Validates that field is required
   ///
