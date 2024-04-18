@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "92305610778",
+    "project_id": "order-tracker-9adc4",
+    "storage_bucket": "order-tracker-9adc4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92305610778:android:f7afd1f23bd5ff343819a3",
+        "android_client_info": {
+          "package_name": "com.example.order_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92305610778-7eapcpso86j4f1kqvb8v9f8u84eq0qn0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.order_tracker",
+            "certificate_hash": "bcd904e4a95a6b70d3dd661e5d9210d4ff2f60d2"
+          }
+        },
+        {
+          "client_id": "92305610778-jap5a9q7f034nfdrii6vsmdhieerf56d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcu_wRhbpa8T1pk-0uBRgDZ7QCMi1fWOI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92305610778-jap5a9q7f034nfdrii6vsmdhieerf56d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "92305610778-j16gr2r7dbd6mdaer6aiidrmk11lm6ik.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.orderTracker"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
