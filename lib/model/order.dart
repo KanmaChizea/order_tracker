@@ -20,14 +20,26 @@ class Order {
   final OrderStatus status;
   final OrderTimestamps timestamps;
 
-  Order updateStatus(OrderStatus newStatus, DateTime time) {
+  Order updateStatus(OrderStatus newStatus) {
     final newTimestamps = switch (newStatus) {
-      OrderStatus.placed => timestamps.copyWith(placedTime: time),
-      OrderStatus.arrived => timestamps.copyWith(arrivedTime: time),
-      OrderStatus.accepted => timestamps.copyWith(acceptedTime: time),
-      OrderStatus.pickup => timestamps.copyWith(pickupTime: time),
-      OrderStatus.delivered => timestamps.copyWith(deliveredTime: time),
-      OrderStatus.enroute => timestamps.copyWith(enrouteTime: time),
+      OrderStatus.placed => timestamps.copyWith(
+          placedTime: DateTime.now(),
+        ),
+      OrderStatus.arrived => timestamps.copyWith(
+          arrivedTime: DateTime.now(),
+        ),
+      OrderStatus.accepted => timestamps.copyWith(
+          acceptedTime: DateTime.now(),
+        ),
+      OrderStatus.pickup => timestamps.copyWith(
+          pickupTime: DateTime.now(),
+        ),
+      OrderStatus.delivered => timestamps.copyWith(
+          deliveredTime: DateTime.now(),
+        ),
+      OrderStatus.enroute => timestamps.copyWith(
+          enrouteTime: DateTime.now(),
+        ),
     };
     return Order(
       id: id,

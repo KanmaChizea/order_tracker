@@ -37,7 +37,7 @@ class TrackOrderScreen extends StatelessWidget {
                         ),
                         order.getStatusDate(status) != null
                             ? Text(
-                                DateFormat('hh:ss aa')
+                                DateFormat('hh:mm aa')
                                     .format(order.getStatusDate(status)!)
                                     .toLowerCase(),
                                 style: AppTextstyles.subHeading,

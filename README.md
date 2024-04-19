@@ -29,3 +29,9 @@ And you're good to go!
 - On your Ably dashboard, attach to channel name `orderStatus`
 
 - Send messages to update the status of the order on your app. The message date should be sent in order as ORDER ACCEPTED, ORDER PICK UP IN PROGRESS, ORDER ON THE WAY TO CUSTOMER, ORDER ARRIVED, ORDER DELIVERED
+
+## Test the application
+
+- Appetize link [here](https://appetize.io/app/6qoyzh7n2n7us5auwb64dbmqay?device=pixel7&osVersion=13.0)
+
+- Demo Video link [here](https://drive.google.com/file/d/1SHv56rsvyOX9mgoPZb22126HRq1gfjuh/view?usp=sharing)
