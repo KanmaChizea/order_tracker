@@ -1,6 +1,6 @@
 import 'package:order_tracker/model/user.dart';
 
-abstract class AuthState {}
+sealed class AuthState {}
 
 class UserSignedIn extends AuthState {
   UserSignedIn(this.user);

@@ -6,7 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:order_tracker/main.dart';
 import 'package:order_tracker/model/user.dart';
 
-abstract class IAuthService {
+abstract interface class IAuthService {
   Future<User?> getInitialState();
   Stream<User?> authState();
   Future<User?> loginWithGithub();
